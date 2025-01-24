@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Authenticator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff; /* White text color */
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('file:///C:/Users/91911/Desktop/project/background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full viewport height */
+            flex-direction: column;
+            text-align: center; /* Center text */
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: black;
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px; /* Increased margin */
+            color: black;
+        }
+        
+        input[type="file"], input[type="submit"] {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border: none;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        input[type="file"] {
+            width: 200px;
+        }
+        
+        input[type="submit"] {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deepfake Detection</h1>
+        <p>Upload a video file:</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="video"> <br>
+            <input type="submit" value="Upload and Predict">
+        </form>
+        
+        {% if prediction %}
+        <p>Prediction: {{ prediction }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

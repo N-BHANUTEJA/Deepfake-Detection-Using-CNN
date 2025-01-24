@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Authenticator Output</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+        }
+
+        .container {
+            max-width: 80vw;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Style for images */
+        .image-container {
+            overflow-x: auto; /* Enable horizontal scroll */
+            white-space: nowrap; /* Prevent images from wrapping to next line */
+            text-align: center; /* Center images */
+        }
+
+        .image-container img {
+            max-height: 25vw; /* Limit image height to 25vw */
+            margin-right: 10px; /* Add some space between images */
+            border-radius: 5px;
+        }
+
+        /* Style for video */
+        .video-container {
+            text-align: center; /* Center video */
+        }
+
+        .video-container video {
+            max-width: 100%; /* Make video responsive */
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction: {{ prediction }}</h1>
+
+        <h2>Split Frame Images</h2>
+        <div class="image-container">
+            {% for frame in frames %}
+                <img src="data:image/jpeg;base64,{{ frame|b64encode }}" alt="Frame">
+            {% endfor %}
+        </div>
+
+        <h2>Cropped Face Images</h2>
+        <div class="image-container">
+            {% for face in cropped_faces %}
+                <img src="data:image/jpeg;base64,{{ face|b64encode }}" alt="Face">
+            {% endfor %}
+        </div>
+
+        <h2>Final Image</h2>
+        <div class="image-container">
+            <img src="data:image/jpeg;base64,{{ final_frame|b64encode }}" alt="Final Frame">
+        </div>
+    </div>
+</body>
+</html>
